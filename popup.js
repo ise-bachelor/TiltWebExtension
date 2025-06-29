@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("startBtn");
   const video = document.getElementById("video");
+  const startBtn = document.getElementById("startBtn");
 
-  btn.addEventListener("click", async () => {
+  startBtn.addEventListener("click", async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       video.srcObject = stream;
     } catch (err) {
-      console.error("カメラの起動に失敗しました:", err);
+      console.error("カメラの起動に失敗:", err);
       alert("カメラが使えませんでした。");
     }
   });
