@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
       video.srcObject = stream;
     } catch (err) {
       console.error("カメラの起動に失敗:", err);
+      console.log(err);
       alert("カメラが使えませんでした。");
     }
   });
