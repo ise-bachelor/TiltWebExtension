@@ -1,15 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const video = document.getElementById("video");
-  const startBtn = document.getElementById("startBtn");
-
-  startBtn.addEventListener("click", async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      video.srcObject = stream;
-    } catch (err) {
-      console.error("カメラの起動に失敗:", err);
-      console.log(err);
-      alert("カメラが使えませんでした。");
-    }
+document.getElementById("startBtn").addEventListener("click", () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+      func: () => {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            const video = document.createElement("video");
+            video.srcObject = stream;
+            video.autoplay = true;
+            video.style.position = "fixed";
+            video.style.top = "0";
+            video.style.left = "0";
+            video.style.zIndex = "10000";
+            video.style.width = "300px";
+            document.body.appendChild(video);
+          })
+          .catch(err => alert("カメラ使用を許可してください: " + err.name));
+      }
+    });
   });
 });
