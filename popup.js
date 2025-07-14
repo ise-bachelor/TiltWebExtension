@@ -9,8 +9,9 @@ document.getElementById("startBtn").addEventListener("click", () => {
             video.srcObject = stream;
             video.autoplay = true;
             video.style.position = "fixed";
-            video.style.bottom = "0";
-            video.style.right = "0";
+            video.style.top = "50%";
+            video.style.left = "50%";
+            video.style.transform = "translate(-50%, -50%)";
             video.style.zIndex = "10000";
             video.style.width = "300px";
             document.body.appendChild(video);
