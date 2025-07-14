@@ -1,13 +1,7 @@
+import { FaceMesh } from 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js';
+
 document.getElementById("startBtn").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
-  await chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: [
-      "libs/face_mesh.js",
-      "libs/camera_utils.js"
-    ]
-  });
   
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
@@ -26,7 +20,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           document.body.appendChild(video);
 
           const faceMesh = new FaceMesh({
-            locateFile: (file) => `libs/${file}`,
+            locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
           });
 
           faceMesh.setOptions({
