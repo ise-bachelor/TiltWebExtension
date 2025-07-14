@@ -13,8 +13,8 @@ document.getElementById("startBtn").addEventListener("click", () => {
           });
 
         Promise.all([
-          loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"),
-          loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js")
+          loadScript(chrome.runtime.getURL("libs/face_mesh.js")),
+          loadScript(chrome.runtime.getURL("libs/camera_utils.js"))
         ]).then(() => {
           const video = document.createElement("video");
           video.style.position = "fixed";
