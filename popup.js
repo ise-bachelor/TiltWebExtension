@@ -5,6 +5,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
     fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
     fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
   ]);
+  const wasmBaseUrl = chrome.runtime.getURL("libs/");
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     world: "MAIN",
@@ -25,7 +26,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           document.body.appendChild(video);
 
           const faceMesh = new FaceMesh({
-            locateFile: (file) => "/libs/" + file
+            locateFile: (file) => wasmBaseUrl + file
           });
 
           faceMesh.setOptions({
@@ -56,6 +57,6 @@ document.getElementById("startBtn").addEventListener("click", async () => {
         })
         .catch(err => alert("カメラ使用を許可してください: " + err.name));
     },
-    args: [faceMeshSrc, cameraUtilsSrc]
+    args: [faceMeshSrc, cameraUtilsSrc, wasmBaseUrl]
   });
 });
