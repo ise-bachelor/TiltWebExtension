@@ -23,7 +23,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           document.body.appendChild(video);
 
           const faceMesh = new FaceMesh({
-            locateFile: (file) => wasmBaseUrl + file
+            locateFile: (file) => chrome.runtime.getURL("libs/" + file),
           });
 
           faceMesh.setOptions({
