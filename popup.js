@@ -49,7 +49,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
             height: 225
           });
 
-          camera.start();
+          // camera.start();
         })
         .catch(err => alert("カメラ使用を許可してください: " + err.name));
     }
