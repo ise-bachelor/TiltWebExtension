@@ -5,10 +5,10 @@ document.getElementById("startBtn").addEventListener("click", async () => {
     fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
     fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
   ]);
+  console.log(faceMeshSrc);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: (faceMeshCode, cameraUtilsCode) => {
-      console.log(faceMeshCode);
       eval(faceMeshCode);
       eval(cameraUtilsCode);
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
