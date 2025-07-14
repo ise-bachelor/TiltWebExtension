@@ -1,11 +1,16 @@
 document.getElementById("startBtn").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  chrome.scripting.executeScript({
+  
+  await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: [
       "libs/face_mesh.js",
       "libs/camera_utils.js"
-    ],
+    ]
+  });
+  
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
     func: () => {
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
