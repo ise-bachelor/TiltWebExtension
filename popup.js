@@ -13,7 +13,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
             video.style.right = "0";
             video.style.zIndex = "10000";
             video.style.width = "300px";
-            // document.body.appendChild(video);
+            document.body.appendChild(video);
           })
           .catch(err => alert("カメラ使用を許可してください: " + err.name));
       }
