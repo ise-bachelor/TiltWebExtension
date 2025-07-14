@@ -8,10 +8,9 @@ document.getElementById("startBtn").addEventListener("click", async () => {
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: (faceMeshCode, cameraUtilsCode) => {
-      // MediaPipeのライブラリを実行
+      console.log(faceMeshCode);
       eval(faceMeshCode);
       eval(cameraUtilsCode);
-
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
           const video = document.createElement("video");
