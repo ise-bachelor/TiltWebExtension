@@ -7,7 +7,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
   ]);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: () => {
+    func: (faceMeshCode, cameraUtilsCode) => {
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
           const video = document.createElement("video");
@@ -49,9 +49,10 @@ document.getElementById("startBtn").addEventListener("click", async () => {
             height: 225
           });
 
-          // camera.start();
+          camera.start();
         })
         .catch(err => alert("カメラ使用を許可してください: " + err.name));
-    }
+    },
+    args: [faceMeshSrc, cameraUtilsSrc]
   });
 });
