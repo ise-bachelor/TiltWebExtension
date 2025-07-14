@@ -1,5 +1,10 @@
 document.getElementById("startBtn").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  // 拡張内のJSファイルを事前に取得
+  const [faceMeshSrc, cameraUtilsSrc] = await Promise.all([
+    fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
+    fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
+  ]);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => {
