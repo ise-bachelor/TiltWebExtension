@@ -5,6 +5,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
     target: { tabId: tab.id },
     files: [
       "libs/face_mesh/face_mesh.js",
+      "libs/face_mesh/face_mesh_solution_packed_assets_loader.js",
       "libs/camera_utils/camera_utils.js",
       "content.js"
     ]
