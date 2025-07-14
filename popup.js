@@ -1,17 +1,14 @@
 document.getElementById("startBtn").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   // 拡張内のJSファイルを事前に取得
-  const [faceMeshSrc, cameraUtilsSrc] = await Promise.all([
-    fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
-    fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
-  ]);
+  // const [faceMeshSrc, cameraUtilsSrc] = await Promise.all([
+  //   fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
+  //   fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
+  // ]);
   const wasmBaseUrl = chrome.runtime.getURL("libs/");
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    world: "MAIN",
-    func: (faceMeshCode, cameraUtilsCode) => {
-      eval(faceMeshCode);
-      eval(cameraUtilsCode);
+    func: () => {
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
           const video = document.createElement("video");
@@ -56,7 +53,6 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           camera.start();
         })
         .catch(err => alert("カメラ使用を許可してください: " + err.name));
-    },
-    args: [faceMeshSrc, cameraUtilsSrc, wasmBaseUrl]
+    }
   });
 });
