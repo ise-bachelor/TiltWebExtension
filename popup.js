@@ -9,11 +9,11 @@ document.getElementById("startBtn").addEventListener("click", () => {
             video.srcObject = stream;
             video.autoplay = true;
             video.style.position = "fixed";
-            video.style.top = "0";
-            video.style.left = "0";
+            video.style.bottom = "0";
+            video.style.right = "0";
             video.style.zIndex = "10000";
             video.style.width = "300px";
-            document.body.appendChild(video);
+            // document.body.appendChild(video);
           })
           .catch(err => alert("カメラ使用を許可してください: " + err.name));
       }
