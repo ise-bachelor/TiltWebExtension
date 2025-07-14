@@ -5,9 +5,9 @@ document.getElementById("startBtn").addEventListener("click", async () => {
     fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
     fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
   ]);
-  console.log(faceMeshSrc);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
+    world: "MAIN",
     func: (faceMeshCode, cameraUtilsCode) => {
       eval(faceMeshCode);
       eval(cameraUtilsCode);
@@ -25,7 +25,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           document.body.appendChild(video);
 
           const faceMesh = new FaceMesh({
-            locateFile: (file) => chrome.runtime.getURL("libs/" + file)
+            locateFile: (file) => "/libs/" + file
           });
 
           faceMesh.setOptions({
