@@ -1,7 +1,7 @@
 document.getElementById("startBtn").addEventListener("click", async () => {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tab = await chrome.tabs.query({ active: true, currentWindow: true });
   chrome.scripting.executeScript({
-    target: { tabId: tab[0].id },
+    target: { tabId: tab.id },
     func: () => {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
