@@ -1,13 +1,11 @@
 document.getElementById("startBtn").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  // 拡張内のJSファイルを事前に取得
-  // const [faceMeshSrc, cameraUtilsSrc] = await Promise.all([
-  //   fetch(chrome.runtime.getURL("libs/face_mesh.js")).then(res => res.text()),
-  //   fetch(chrome.runtime.getURL("libs/camera_utils.js")).then(res => res.text())
-  // ]);
-  const wasmBaseUrl = chrome.runtime.getURL("libs/");
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
+    files: [
+      "libs/face_mesh.js",
+      "libs/camera_utils.js"
+    ],
     func: () => {
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
@@ -23,7 +21,7 @@ document.getElementById("startBtn").addEventListener("click", async () => {
           document.body.appendChild(video);
 
           const faceMesh = new FaceMesh({
-            locateFile: (file) => chrome.runtime.getURL("libs/" + file),
+            locateFile: (file) => `libs/${file}`,
           });
 
           faceMesh.setOptions({
