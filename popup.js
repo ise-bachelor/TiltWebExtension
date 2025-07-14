@@ -7,12 +7,11 @@ document.getElementById("startBtn").addEventListener("click", async () => {
   ]);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    world: "MAIN",
     func: (faceMeshCode, cameraUtilsCode) => {
       // MediaPipeのライブラリを実行
       eval(faceMeshCode);
       eval(cameraUtilsCode);
-      
+
       navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then(stream => {
           const video = document.createElement("video");
