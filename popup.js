@@ -11,6 +11,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
             video.style.position = "fixed";
             video.style.top = "50%";
             video.style.left = "50%";
+            video.style.transform = "none";
             video.style.transform = "translate(-50%, -50%)";
             video.style.zIndex = "10000";
             video.style.width = "300px";
