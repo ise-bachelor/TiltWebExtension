@@ -41,6 +41,7 @@ faceMesh.setOptions({
 });
 
 faceMesh.onResults(results => {
+  console.log("MediaPipeからの結果:", results);
   if (results.multiFaceLandmarks?.length > 0) {
     const landmarks = results.multiFaceLandmarks[0];
     const nose = landmarks[1];
