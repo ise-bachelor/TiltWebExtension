@@ -4,8 +4,10 @@ document.getElementById("startBtn").addEventListener("click", async () => {
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: [
+      "libs/face_mesh_solution_packed_assets_loader.js",
       "libs/face_mesh.js",
       "libs/face_mesh_solution_wasm_bin.js",
+      "libs/face_mesh_solution_simd_wasm_bin.js",
       "libs/camera_utils.js",
       "content.js"
     ]
