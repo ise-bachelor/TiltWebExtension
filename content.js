@@ -14,7 +14,10 @@ video.style.height = "225px";
 document.body.appendChild(video);
 
 const faceMesh = new FaceMesh({
-  locateFile: (file) => chrome.runtime.getURL("libs/" + file)
+  locateFile: (file) => {
+    console.log("MediaPipe がファイルを探しています:", file);
+    return chrome.runtime.getURL("libs/" + file);
+  }
 });
 
 faceMesh.setOptions({
