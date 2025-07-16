@@ -13,19 +13,6 @@ video.style.width = "300px";
 video.style.height = "225px";
 document.body.appendChild(video);
 
-// 動的にMediaPipeの内部挙動を再確認
-const testUrl = chrome.runtime.getURL("libs/face_mesh_solution_packed_assets.data");
-fetch(testUrl)
-  .then(res => {
-    if (res.ok) {
-      console.log("✅ .dataファイルが fetch できました");
-    } else {
-      console.error("❌ .dataファイルが fetch できません: ", res.status);
-    }
-  })
-  .catch(err => console.error("❌ fetch エラー:", err));
-
-
 const faceMesh = new FaceMesh({
   locateFile: (file) => {
     console.log("MediaPipe がファイルを探しています:", file);
