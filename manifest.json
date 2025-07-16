@@ -12,12 +12,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "libs/*.js",
-        "libs/*.wasm",
-        "libs/*.data",
-        "libs/*.binarypb"
-      ],
+      "resources": ["libs/*"],
       "matches": ["<all_urls>"]
     }
   ],
