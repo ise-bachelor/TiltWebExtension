@@ -13,11 +13,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "libs/face_mesh_solution_packed_assets_loader.js",
-        "libs/face_mesh_solution_packed_assets.data",
-        "libs/*.wasm",
-        "libs/*.js",
-        "libs/*.binarypb"
+        "libs/*"
       ],
       "matches": ["<all_urls>"]
     }
