@@ -9,6 +9,7 @@
    var loadPackage = function(metadata) {
   
       var PACKAGE_PATH = 'chrome-extension://alkhdogafampinfkihefbpfiihhdoeon/libs/';
+      Module['locateFile'] = PACKAGE_PATH;
       // var PACKAGE_PATH = '';
       // if (typeof window === 'object') {
       //   PACKAGE_PATH = window['encodeURIComponent'](window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/');
