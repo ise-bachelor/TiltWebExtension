@@ -8,14 +8,14 @@
   (function() {
    var loadPackage = function(metadata) {
   
-      var PACKAGE_PATH = '';
-      if (typeof window === 'object') {
-        // PACKAGE_PATH = window['encodeURIComponent'](window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/');
-        PACKAGE_PATH = 'chrome-extension://alkhdogafampinfkihefbpfiihhdoeon/libs/';
-      } else if (typeof process === 'undefined' && typeof location !== 'undefined') {
-        // web worker
-        PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
-      }
+      var PACKAGE_PATH = 'chrome-extension://alkhdogafampinfkihefbpfiihhdoeon/libs/';
+      // var PACKAGE_PATH = '';
+      // if (typeof window === 'object') {
+      //   PACKAGE_PATH = window['encodeURIComponent'](window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/');
+      // } else if (typeof process === 'undefined' && typeof location !== 'undefined') {
+      //   // web worker
+      //   PACKAGE_PATH = encodeURIComponent(location.pathname.toString().substring(0, location.pathname.toString().lastIndexOf('/')) + '/');
+      // }
       var PACKAGE_NAME = 'blaze-out/k8-opt/genfiles/third_party/mediapipe/web/solutions/face_mesh/face_mesh_solution_packed_assets.data';
       var REMOTE_PACKAGE_BASE = 'face_mesh_solution_packed_assets.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
