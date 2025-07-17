@@ -16,6 +16,7 @@ document.body.appendChild(video);
 const faceMesh = new FaceMesh({
   locateFile: (file) => {
     console.log("MediaPipe がファイルを探しています:", file);
+    console.log(chrome.runtime.getURL("libs/" + file));
     return chrome.runtime.getURL("libs/" + file);
   }
 });
