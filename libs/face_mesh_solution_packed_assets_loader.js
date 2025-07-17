@@ -6,8 +6,6 @@
   Module.expectedDataFileDownloads++;
   (function() {
    var loadPackage = function(metadata) {
-  
-      // var PACKAGE_PATH = 'chrome-extension://alkhdogafampinfkihefbpfiihhdoeon/libs/';
       var PACKAGE_PATH = '';
       if (typeof window === 'object') {
         PACKAGE_PATH = window['encodeURIComponent'](window.location.pathname.toString().substring(0, window.location.pathname.toString().lastIndexOf('/')) + '/');
@@ -19,6 +17,7 @@
       var REMOTE_PACKAGE_BASE = 'face_mesh_solution_packed_assets.data';
       if (typeof Module['locateFilePackage'] === 'function' && !Module['locateFile']) {
         Module['locateFile'] = Module['locateFilePackage'];
+        console.log(Module['locateFile']);
         err('warning: you defined Module.locateFilePackage, that has been renamed to Module.locateFile (using your locateFilePackage for now)');
       }
       var REMOTE_PACKAGE_NAME = Module['locateFile'] ? Module['locateFile'](REMOTE_PACKAGE_BASE, '') : REMOTE_PACKAGE_BASE;
